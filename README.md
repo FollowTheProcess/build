@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-	info, ok := build.GetInfo()
+	info, ok := build.Info()
 	if !ok {
 		fmt.Fprintf(os.Stderr, "could not get build info")
 		os.Exit(1)
@@ -75,7 +75,7 @@ import (
 )
 
 func main() {
-	info, _ := build.GetInfo()
+	info, _ := build.Info()
 	if err := json.NewEncoder(os.Stdout).Encode(info); err != nil {
 		fmt.Fprintf(os.Stderr, "could not write JSON: %v\n", err)
 		os.Exit(1)
