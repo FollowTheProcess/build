@@ -1,0 +1,15 @@
+go:           go1.23.2
+path:         github.com/SomeGuy/project
+os:           darwin
+arch:         amd64
+vcs:          git
+version:      v1.2.3
+commit:       5e8b8a68867eff5f754bfecdbc8baeb2c14c711c
+dirty:        true
+time:         2024-10-06T15:39:24Z
+main:         mod  github.com/SomeGuy/project  v1.2.3  WwdigHlEGoXEzt8n/VGpqrNkD3j5gHsqBjYduqTqRE0=
+-buildmode:   exe
+-compiler:    gc
+-ldflags:     -X main.version=dev
+CGO_ENABLED:  0
+GOAMD64:      v4
