@@ -1,4 +1,4 @@
-// Package build is a placeholder for something cool.
+// Package build provides a simple mechanism for getting at debug.BuildInfo in a more ergonomic way.
 package build
 
 import (
