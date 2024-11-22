@@ -129,7 +129,7 @@ func main() {
 	}
 
 	fmt.Printf("Version: %s\n", info.Version)
-  fmt.Printf("Commit: %s\n", info.Commit)
+   	fmt.Printf("Commit: %s\n", info.Commit)
 }
 ```
 
