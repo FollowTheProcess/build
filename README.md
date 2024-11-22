@@ -109,6 +109,30 @@ Gets you...
 }
 ```
 
+`build.Info` returns a `BuildInfo` struct from which you can take any component of the build info:
+
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/FollowTheProcess/build"
+)
+
+func main() {
+	info, ok := build.Info()
+	if !ok {
+		fmt.Fprintf(os.Stderr, "could not get build info")
+		os.Exit(1)
+	}
+
+	fmt.Printf("Version: %s\n", info.Version)
+  fmt.Printf("Commit: %s\n", info.Commit)
+}
+```
+
 ### Credits
 
 This package is wholly based on the Go internal implementation of `runtime/debug.BuildInfo`, this is just a slightly nicer wrapper that makes it easier to access common settings
