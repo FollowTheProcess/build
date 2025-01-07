@@ -2,6 +2,7 @@ module github.com/FollowTheProcess/build
 
 go 1.23
 
-require github.com/FollowTheProcess/test v0.17.1
-
-require github.com/google/go-cmp v0.6.0 // indirect
+require (
+	github.com/FollowTheProcess/snapshot v0.1.0
+	github.com/FollowTheProcess/test v0.19.0
+)
