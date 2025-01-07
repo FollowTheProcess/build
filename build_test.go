@@ -4,12 +4,12 @@ import (
 	"bytes"
 	"encoding/json"
 	"flag"
-	"os"
-	"path/filepath"
+	"reflect"
 	"runtime/debug"
 	"testing"
 	"time"
 
+	"github.com/FollowTheProcess/snapshot"
 	"github.com/FollowTheProcess/test"
 )
 
@@ -20,7 +20,6 @@ func TestString(t *testing.T) {
 
 	tests := []struct {
 		name string    // The name of the test case
-		file string    // Name of the file containing the expected output (relative to testdata)
 		info BuildInfo // The build info under test
 	}{
 		{
@@ -48,22 +47,13 @@ func TestString(t *testing.T) {
 				Version: "v1.2.3",
 				Dirty:   true,
 			},
-			file: "info.txt",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := tt.info.String()
-			file := filepath.Join(test.Data(t), tt.file)
-
-			if *update {
-				t.Logf("Updating %s\n", file)
-				err := os.WriteFile(file, []byte(got), os.ModePerm)
-				test.Ok(t, err)
-			}
-
-			test.File(t, got, file)
+			snap := snapshot.New(t, snapshot.Update(*update))
+			snap.Snap(tt.info)
 		})
 	}
 }
@@ -73,7 +63,6 @@ func TestJSON(t *testing.T) {
 
 	tests := []struct {
 		name string    // The name of the test case
-		file string    // Name of the file containing the expected output (relative to testdata)
 		info BuildInfo // The build info under test
 	}{
 		{
@@ -101,26 +90,17 @@ func TestJSON(t *testing.T) {
 				Version: "v1.2.3",
 				Dirty:   true,
 			},
-			file: "info.json",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			snap := snapshot.New(t, snapshot.Update(*update))
 			buf := &bytes.Buffer{}
 			err := json.NewEncoder(buf).Encode(tt.info)
 			test.Ok(t, err)
 
-			got := buf.String()
-			file := filepath.Join(test.Data(t), tt.file)
-
-			if *update {
-				t.Logf("Updating %s\n", file)
-				err := os.WriteFile(file, []byte(got), os.ModePerm)
-				test.Ok(t, err)
-			}
-
-			test.File(t, got, file)
+			snap.Snap(buf.String())
 		})
 	}
 }
@@ -283,7 +263,9 @@ func TestParse(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got := parseBuildInfo(tt.dbg)
-			test.Diff(t, got, tt.want)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("\nGot:\t%#v\nWanted:\t%#v\n", got, tt.want)
+			}
 		})
 	}
 }
