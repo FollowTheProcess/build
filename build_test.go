@@ -269,3 +269,33 @@ func TestParse(t *testing.T) {
 		})
 	}
 }
+
+func BenchmarkParse(b *testing.B) {
+	info := &debug.BuildInfo{
+		GoVersion: "go1.23.2",
+		Path:      "github.com/SomeGuy/project",
+		Main: debug.Module{
+			Path:    "github.com/SomeGuy/project",
+			Version: "v1.2.3",
+			Sum:     "WwdigHlEGoXEzt8n/VGpqrNkD3j5gHsqBjYduqTqRE0=",
+			Replace: nil,
+		},
+		Settings: []debug.BuildSetting{
+			{Key: "GOOS", Value: "darwin"},
+			{Key: "GOARCH", Value: "amd64"},
+			{Key: "vcs", Value: "git"},
+			{Key: "vcs.revision", Value: "5e8b8a68867eff5f754bfecdbc8baeb2c14c711c"},
+			{Key: "vcs.time", Value: "2024-10-06T10:39:12Z"},
+			{Key: "vcs.modified", Value: "true"},
+			{Key: "-buildmode", Value: "exe"},
+			{Key: "-compiler", Value: "gc"},
+			{Key: "CGO_ENABLED", Value: "0"},
+			{Key: "GOAMD64", Value: "v4"},
+			{Key: "-ldflags", Value: "-X main.version=dev"},
+		},
+	}
+
+	for b.Loop() {
+		parseBuildInfo(info)
+	}
+}
