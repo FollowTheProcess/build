@@ -3,9 +3,7 @@ package build
 
 import (
 	"fmt"
-	"maps"
 	"runtime/debug"
-	"slices"
 	"strconv"
 	"strings"
 	"text/tabwriter"
@@ -23,17 +21,16 @@ const (
 
 // BuildInfo contains the build information of a Go binary.
 type BuildInfo struct { //nolint:revive // Yes it stutters but having the function be build.Info is worth it
-	Main     Module            `json:"main,omitempty"`    // The main module
-	Time     time.Time         `json:"time,omitzero"`     // The modification time associated with Commit
-	Settings map[string]string `json:"settings,omitzero"` // The remaining settings
-	Go       string            `json:"go,omitempty"`      // The Go toolchain version used to build the binary
-	Path     string            `json:"path,omitempty"`    // The package path of the main package
-	OS       string            `json:"os,omitempty"`      // The value of $GOOS
-	Arch     string            `json:"arch,omitempty"`    // The value of $GOARCH
-	VCS      string            `json:"vcs,omitempty"`     // The version control system for the source tree where the build ran
-	Commit   string            `json:"commit,omitempty"`  // The SHA1 of the current commit when the build ran
-	Version  string            `json:"version,omitempty"` // The module version
-	Dirty    bool              `json:"dirty,omitempty"`   // Whether the source tree had local modifications at the time of the build
+	Main    Module    `json:"main,omitempty"`    // The main module
+	Time    time.Time `json:"time,omitzero"`     // The modification time associated with Commit
+	Go      string    `json:"go,omitempty"`      // The Go toolchain version used to build the binary
+	Path    string    `json:"path,omitempty"`    // The package path of the main package
+	OS      string    `json:"os,omitempty"`      // The value of $GOOS
+	Arch    string    `json:"arch,omitempty"`    // The value of $GOARCH
+	VCS     string    `json:"vcs,omitempty"`     // The version control system for the source tree where the build ran
+	Commit  string    `json:"commit,omitempty"`  // The SHA1 of the current commit when the build ran
+	Version string    `json:"version,omitempty"` // The module version
+	Dirty   bool      `json:"dirty,omitempty"`   // Whether the source tree had local modifications at the time of the build
 }
 
 // String implements [fmt.Stringer] for [BuildInfo].
@@ -50,12 +47,6 @@ func (b BuildInfo) String() string {
 	fmt.Fprintf(tab, "dirty:\t%v\n", b.Dirty)
 	fmt.Fprintf(tab, "time:\t%s\n", b.Time.Format(time.RFC3339))
 	fmt.Fprintf(tab, "main:\t%s\n", writeModule("mod", b.Main))
-
-	// Sort the settings map for deterministic printing
-	keys := slices.Sorted(maps.Keys(b.Settings))
-	for _, key := range keys {
-		fmt.Fprintf(tab, "%s:\t%s\n", key, b.Settings[key])
-	}
 
 	tab.Flush()
 	return s.String()
@@ -85,10 +76,9 @@ func parseBuildInfo(dbg *debug.BuildInfo) BuildInfo {
 			Version: dbg.Main.Version,
 			Sum:     dbg.Main.Sum,
 		},
-		Go:       dbg.GoVersion,
-		Path:     dbg.Path,
-		Version:  dbg.Main.Version,
-		Settings: make(map[string]string, len(dbg.Settings)),
+		Go:      dbg.GoVersion,
+		Path:    dbg.Path,
+		Version: dbg.Main.Version,
 	}
 
 	for _, setting := range dbg.Settings {
@@ -115,9 +105,6 @@ func parseBuildInfo(dbg *debug.BuildInfo) BuildInfo {
 				continue
 			}
 			info.Dirty = modified
-		default:
-			// Add any remaining settings into our info
-			info.Settings[setting.Key] = setting.Value
 		}
 	}
 
