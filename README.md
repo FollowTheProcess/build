@@ -23,20 +23,20 @@ go get github.com/FollowTheProcess/build@latest
 package main
 
 import (
-	"fmt"
-	"os"
+    "fmt"
+    "os"
 
-	"github.com/FollowTheProcess/build"
+    "github.com/FollowTheProcess/build"
 )
 
 func main() {
-	info, ok := build.Info()
-	if !ok {
-		fmt.Fprintf(os.Stderr, "could not get build info")
-		os.Exit(1)
-	}
+    info, ok := build.Info()
+    if !ok {
+        fmt.Fprintf(os.Stderr, "could not get build info")
+        os.Exit(1)
+    }
 
-	fmt.Printf("%s\n", info)
+    fmt.Printf("%s\n", info)
 }
 ```
 
@@ -53,11 +53,6 @@ commit:       5e8b8a68867eff5f754bfecdbc8baeb2c14c711c
 dirty:        true
 time:         2024-10-06T10:39:12Z
 main:         mod  github.com/FollowTheProcess/build  (devel)  
--buildmode:   exe
--compiler:    gc
--ldflags:     -X main.version=dev
-CGO_ENABLED:  0
-GOAMD64:      v1
 ```
 
 > [!TIP]
@@ -67,19 +62,19 @@ GOAMD64:      v1
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"os"
+    "encoding/json"
+    "fmt"
+    "os"
 
-	"github.com/FollowTheProcess/build"
+    "github.com/FollowTheProcess/build"
 )
 
 func main() {
-	info, _ := build.Info()
-	if err := json.NewEncoder(os.Stdout).Encode(info); err != nil {
-		fmt.Fprintf(os.Stderr, "could not write JSON: %v\n", err)
-		os.Exit(1)
-	}
+    info, _ := build.Info()
+    if err := json.NewEncoder(os.Stdout).Encode(info); err != nil {
+        fmt.Fprintf(os.Stderr, "could not write JSON: %v\n", err)
+        os.Exit(1)
+    }
 }
 ```
 
@@ -92,13 +87,6 @@ Gets you...
     "version": "(devel)"
   },
   "time": "2024-10-06T10:39:12Z",
-  "settings": {
-    "-buildmode": "exe",
-    "-compiler": "gc",
-    "-ldflags": "-X main.version=dev",
-    "CGO_ENABLED": "0",
-    "GOAMD64": "v1"
-  },
   "go": "go1.23.2",
   "path": "github.com/FollowTheProcess/build/cmd/build",
   "os": "darwin",
@@ -115,21 +103,21 @@ Gets you...
 package main
 
 import (
-	"fmt"
-	"os"
+    "fmt"
+    "os"
 
-	"github.com/FollowTheProcess/build"
+    "github.com/FollowTheProcess/build"
 )
 
 func main() {
-	info, ok := build.Info()
-	if !ok {
-		fmt.Fprintf(os.Stderr, "could not get build info")
-		os.Exit(1)
-	}
+    info, ok := build.Info()
+    if !ok {
+        fmt.Fprintf(os.Stderr, "could not get build info")
+        os.Exit(1)
+    }
 
-	fmt.Printf("Version: %s\n", info.Version)
-   	fmt.Printf("Commit: %s\n", info.Commit)
+    fmt.Printf("Version: %s\n", info.Version)
+    fmt.Printf("Commit: %s\n", info.Commit)
 }
 ```
 
