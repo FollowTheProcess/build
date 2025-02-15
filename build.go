@@ -79,6 +79,8 @@ func Info() (info BuildInfo, ok bool) {
 }
 
 func parseBuildInfo(dbg *debug.BuildInfo) BuildInfo {
+	const capturedSettings = 6 // Settings we capture in the struct, the rest are dumped into a map
+	capacity := len(dbg.Settings) - capturedSettings
 	info := BuildInfo{
 		Main: Module{
 			Path:    dbg.Main.Path,
@@ -88,7 +90,7 @@ func parseBuildInfo(dbg *debug.BuildInfo) BuildInfo {
 		Go:       dbg.GoVersion,
 		Path:     dbg.Path,
 		Version:  dbg.Main.Version,
-		Settings: make(map[string]string, len(dbg.Settings)),
+		Settings: make(map[string]string, capacity),
 	}
 
 	for _, setting := range dbg.Settings {
