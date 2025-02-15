@@ -23,17 +23,17 @@ const (
 
 // BuildInfo contains the build information of a Go binary.
 type BuildInfo struct { //nolint:revive // Yes it stutters but having the function be build.Info is worth it
-	Main     Module            `json:"main,omitempty"`     // The main module
-	Time     time.Time         `json:"time,omitempty"`     // The modification time associated with Commit
-	Settings map[string]string `json:"settings,omitempty"` // The remaining settings
-	Go       string            `json:"go,omitempty"`       // The Go toolchain version used to build the binary
-	Path     string            `json:"path,omitempty"`     // The package path of the main package
-	OS       string            `json:"os,omitempty"`       // The value of $GOOS
-	Arch     string            `json:"arch,omitempty"`     // The value of $GOARCH
-	VCS      string            `json:"vcs,omitempty"`      // The version control system for the source tree where the build ran
-	Commit   string            `json:"commit,omitempty"`   // The SHA1 of the current commit when the build ran
-	Version  string            `json:"version,omitempty"`  // The module version
-	Dirty    bool              `json:"dirty,omitempty"`    // Whether the source tree had local modifications at the time of the build
+	Main     Module            `json:"main,omitempty"`    // The main module
+	Time     time.Time         `json:"time,omitzero"`     // The modification time associated with Commit
+	Settings map[string]string `json:"settings,omitzero"` // The remaining settings
+	Go       string            `json:"go,omitempty"`      // The Go toolchain version used to build the binary
+	Path     string            `json:"path,omitempty"`    // The package path of the main package
+	OS       string            `json:"os,omitempty"`      // The value of $GOOS
+	Arch     string            `json:"arch,omitempty"`    // The value of $GOARCH
+	VCS      string            `json:"vcs,omitempty"`     // The version control system for the source tree where the build ran
+	Commit   string            `json:"commit,omitempty"`  // The SHA1 of the current commit when the build ran
+	Version  string            `json:"version,omitempty"` // The module version
+	Dirty    bool              `json:"dirty,omitempty"`   // Whether the source tree had local modifications at the time of the build
 }
 
 // String implements [fmt.Stringer] for [BuildInfo].

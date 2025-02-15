@@ -134,6 +134,10 @@ linters-settings:
       - name: redefines-builtin-id
         disabled: true # predeclared does this
 
+      - name: struct-tag
+        arguments:
+          - json,omitzero
+
       - name: unhandled-error
         arguments:
           - fmt\.(Fp|P)rint(ln|f)?
