@@ -264,3 +264,9 @@ func BenchmarkParse(b *testing.B) {
 		parseBuildInfo(info)
 	}
 }
+
+func BenchmarkRead(b *testing.B) {
+	for b.Loop() {
+		debug.ReadBuildInfo()
+	}
+}
