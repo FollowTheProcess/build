@@ -9,7 +9,7 @@ tasks:
   default:
     desc: List all available tasks
     silent: true
-    cmds: 
+    cmds:
       - task --list
 
   tidy:
@@ -25,25 +25,21 @@ tasks:
     desc: Run go fmt on all source files
     sources:
       - "**/*.go"
-    preconditions:
-      - sh: command -v golines
-        msg: golines not installed, see https://github.com/segmentio/golines
     cmds:
       - go fmt ./...
-      - golines . --ignore-generated --write-output
 
   test:
     desc: Run the test suite
     sources:
       - "**/*.go"
-    cmds: 
+    cmds:
       - go test -race ./... {{ .CLI_ARGS }}
 
   bench:
     desc: Run all project benchmarks
     sources:
       - "**/*.go"
-    cmds: 
+    cmds:
       - go test ./... -run None -benchmem -bench . {{ .CLI_ARGS }}
 
   lint:
@@ -51,7 +47,7 @@ tasks:
     sources:
       - "**/*.go"
       - .golangci.yml
-    cmds: 
+    cmds:
       - golangci-lint run --fix
     preconditions:
       - sh: command -v golangci-lint
@@ -81,7 +77,7 @@ tasks:
 
   sloc:
     desc: Print lines of code
-    cmds: 
+    cmds:
       - fd . -e go | xargs wc -l | sort -nr | head
 
   clean:
