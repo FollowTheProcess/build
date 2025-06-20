@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/FollowTheProcess/snapshot"
-	"github.com/FollowTheProcess/test"
+	"go.followtheprocess.codes/snapshot"
+	"go.followtheprocess.codes/test"
 )
 
 var update = flag.Bool("update", false, "Update golden files")
