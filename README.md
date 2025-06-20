@@ -1,7 +1,7 @@
 # Build
 
 [![License](https://img.shields.io/github/license/FollowTheProcess/build)](https://github.com/FollowTheProcess/build)
-[![Go Reference](https://pkg.go.dev/badge/github.com/FollowTheProcess/build.svg)](https://pkg.go.dev/github.com/FollowTheProcess/build)
+[![Go Reference](https://pkg.go.dev/badge/go.followtheprocess.codes/build.svg)](https://pkg.go.dev/go.followtheprocess.codes/build)
 [![Go Report Card](https://goreportcard.com/badge/github.com/FollowTheProcess/build)](https://goreportcard.com/report/github.com/FollowTheProcess/build)
 [![GitHub](https://img.shields.io/github/v/release/FollowTheProcess/build?logo=github&sort=semver)](https://github.com/FollowTheProcess/build)
 [![CI](https://github.com/FollowTheProcess/build/workflows/CI/badge.svg)](https://github.com/FollowTheProcess/build/actions?query=workflow%3ACI)
@@ -14,7 +14,7 @@ Ridiculously simple Go build info 🛠️
 ## Installation
 
 ```shell
-go get github.com/FollowTheProcess/build@latest
+go get go.followtheprocess.codes/build@latest
 ```
 
 ## Quickstart
@@ -26,7 +26,7 @@ import (
     "fmt"
     "os"
 
-    "github.com/FollowTheProcess/build"
+    "go.followtheprocess.codes/build"
 )
 
 func main() {
@@ -44,7 +44,7 @@ Gets you...
 
 ```shell
 go:           go1.23.2
-path:         github.com/FollowTheProcess/build/cmd/build
+path:         go.followtheprocess.codes/build/cmd/build
 os:           darwin
 arch:         amd64
 vcs:          git
@@ -52,7 +52,7 @@ version:      (devel)
 commit:       5e8b8a68867eff5f754bfecdbc8baeb2c14c711c
 dirty:        true
 time:         2024-10-06T10:39:12Z
-main:         mod  github.com/FollowTheProcess/build  (devel)  
+main:         mod  go.followtheprocess.codes/build  (devel)  
 ```
 
 > [!TIP]
@@ -66,7 +66,7 @@ import (
     "fmt"
     "os"
 
-    "github.com/FollowTheProcess/build"
+    "go.followtheprocess.codes/build"
 )
 
 func main() {
@@ -83,12 +83,12 @@ Gets you...
 ```json
 {
   "main": {
-    "path": "github.com/FollowTheProcess/build",
+    "path": "go.followtheprocess.codes/build",
     "version": "(devel)"
   },
   "time": "2024-10-06T10:39:12Z",
   "go": "go1.23.2",
-  "path": "github.com/FollowTheProcess/build/cmd/build",
+  "path": "go.followtheprocess.codes/build/cmd/build",
   "os": "darwin",
   "arch": "amd64",
   "vcs": "git",
@@ -106,7 +106,7 @@ import (
     "fmt"
     "os"
 
-    "github.com/FollowTheProcess/build"
+    "go.followtheprocess.codes/build"
 )
 
 func main() {

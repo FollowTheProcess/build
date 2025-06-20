@@ -1,4 +1,4 @@
-module github.com/FollowTheProcess/build
+module go.followtheprocess.codes/build
 
 go 1.24
 
