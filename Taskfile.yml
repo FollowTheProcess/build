@@ -90,4 +90,4 @@ tasks:
     desc: Updates dependencies in go.mod and go.sum
     cmds:
       - go get -u ./...
-      - go mody tidy
+      - go mod tidy
