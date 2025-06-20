@@ -1,5 +1,5 @@
 // Package build provides a simple mechanism for getting at debug.BuildInfo in a more ergonomic way.
-package build
+package build // import "go.followtheprocess.codes/build"
 
 import (
 	"fmt"
