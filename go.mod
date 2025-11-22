@@ -3,7 +3,7 @@ module go.followtheprocess.codes/build
 go 1.25
 
 require (
-	go.followtheprocess.codes/snapshot v0.9.0
+	go.followtheprocess.codes/snapshot v0.9.1
 	go.followtheprocess.codes/test v1.1.0
 )
 
