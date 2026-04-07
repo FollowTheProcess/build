@@ -1,6 +1,6 @@
 module go.followtheprocess.codes/build
 
-go 1.25
+go 1.26
 
 require (
 	go.followtheprocess.codes/snapshot v0.9.1
