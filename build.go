@@ -20,7 +20,9 @@ const (
 )
 
 // BuildInfo contains the build information of a Go binary.
-type BuildInfo struct { //nolint:revive // Yes it stutters but having the function be build.Info is worth it
+//
+//nolint:revive // BuildInfo stutters but worth it for build.Info() function.
+type BuildInfo struct {
 	Main    Module    `json:"main,omitzero"`     // The main module
 	Time    time.Time `json:"time,omitzero"`     // The modification time associated with Commit
 	Go      string    `json:"go,omitempty"`      // The Go toolchain version used to build the binary
