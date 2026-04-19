@@ -4,7 +4,7 @@ go 1.26
 
 require (
 	go.followtheprocess.codes/snapshot v0.10.1
-	go.followtheprocess.codes/test v1.2.2
+	go.followtheprocess.codes/test v1.4.0
 )
 
 require (
