@@ -21,7 +21,7 @@ const (
 
 // BuildInfo contains the build information of a Go binary.
 //
-//nolint:revive // BuildInfo stutters but worth it for build.Info() function.
+
 type BuildInfo struct {
 	Main    Module    `json:"main,omitzero"`     // The main module
 	Time    time.Time `json:"time,omitzero"`     // The modification time associated with Commit
@@ -51,6 +51,7 @@ func (b BuildInfo) String() string {
 	fmt.Fprintf(tab, "main:\t%s\n", writeModule("mod", b.Main))
 
 	tab.Flush()
+
 	return s.String()
 }
 
@@ -99,6 +100,7 @@ func parseBuildInfo(dbg *debug.BuildInfo) BuildInfo {
 				// Skip this setting
 				continue
 			}
+
 			info.Time = t
 		case "vcs.modified":
 			modified, err := strconv.ParseBool(setting.Value)
@@ -106,6 +108,7 @@ func parseBuildInfo(dbg *debug.BuildInfo) BuildInfo {
 				// Skip this setting
 				continue
 			}
+
 			info.Dirty = modified
 		}
 	}
